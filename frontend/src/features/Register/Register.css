@@ -1,0 +1,91 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.register-box h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.register-box input[type="text"],
+.register-box input[type="password"],
+.register-box input[type="date"],
+.register-box input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* Quan trọng để không bị tràn khung */
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.password-box {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.password-box input {
+  margin-bottom: 0 !important;
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: #000;
+}
+
+button[type="submit"],
+.btn-next {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button[type="button"] {
+  flex: 1;
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
