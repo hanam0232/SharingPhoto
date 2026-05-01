@@ -12,4 +12,21 @@ router.get("/all", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select("-password");
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Không tìm thấy người dùng này!" });
+    }
+
+    res.json(user);
+  } catch (error) {
+    console.error("Lỗi lấy chi tiết user:", error);
+    res.status(500).json({ message: "Lỗi server khi truy vấn user" });
+  }
+});
+
 module.exports = router;

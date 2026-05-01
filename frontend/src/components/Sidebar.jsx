@@ -1,25 +1,39 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./AllStyleCss/Sidebar.css";
 
-const Sidebar = ({ onSelectUser }) => {
+const Sidebar = () => {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  const me = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/users/all")
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/api/users/all");
+        const others = res.data.filter((u) => u._id !== me?.id);
+        setUsers(others);
+      } catch (err) {
+        console.log("Lỗi tải danh sách người dùng", err);
+      }
+    };
+    fetchUsers();
+  }, [me?.id]);
 
   return (
     <aside className="sidebar-container">
       {users.map((u) => (
-        <div key={u._id} className="user-block" onClick={() => onSelectUser(u)}>
+        <div
+          key={u._id}
+          className="user-block"
+          onClick={() => navigate(`/profile/${u._id}`)}
+        >
           <img
             src={`http://localhost:5000/${u.avatarUrl}`}
             className="avatar-1"
-            alt="user"
+            alt="avatar"
           />
           <div className="user-info">
             <span className="fullName">{u.fullName}</span>

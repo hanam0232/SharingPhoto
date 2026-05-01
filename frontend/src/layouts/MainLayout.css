@@ -1,0 +1,18 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.body-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-region {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ffffff;
+}

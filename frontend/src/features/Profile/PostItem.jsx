@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./PostItem.css";
+import "./Css/PostItem.css";
 import { ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
 
 const PostItem = ({ post }) => {

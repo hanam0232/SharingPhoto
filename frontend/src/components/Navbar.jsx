@@ -14,9 +14,14 @@ const Navbar = () => {
 
       <div className="nav-right">
         <div className="nav-links">
-          <Link to="/my-posts">Bài đăng</Link>
-          <Link to="/my-photos">Ảnh của tôi</Link>
-          <Link to="/profile/me">Profile</Link>
+          {/* prettier-ignore */}
+          <Link to="/profile/me/posts" className="nav-link">Bài đăng</Link>
+          <Link to="/profile/me/photos" className="nav-link">
+            Ảnh của tôi
+          </Link>
+          <Link to="/profile/me" className="nav-link">
+            Profile
+          </Link>
         </div>
         {/* Avatar */}
         <img
@@ -24,15 +29,6 @@ const Navbar = () => {
           className="avatar-me"
           alt="me"
         />
-        {/* <img
-          src={
-            me?.avatarUrl
-              ? `http://localhost:5000/${me.avatarUrl}`
-              : "/default.png"
-          }
-          alt="me"
-          className="avatar-4"
-        /> */}
       </div>
     </nav>
   );
