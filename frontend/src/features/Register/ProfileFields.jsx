@@ -1,4 +1,3 @@
-// import DefaultAvatar from "./Z_defaultAvatar.png";
 import DefaultAvatar from "../../assets/Z_defaultAvatar.png";
 import { useState } from "react";
 

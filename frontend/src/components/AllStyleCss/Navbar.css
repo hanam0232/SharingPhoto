@@ -1,0 +1,82 @@
+/* 1. Container chính của Navbar */
+.navbar {
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdbdb;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* 2. Cụm bên trái: Logo + Nút Logout */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Kiểu dáng Logo nghiêng và Gradient */
+.logo-text {
+  font-family: "Dancing Script", cursive;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  background: linear-gradient(
+    to right,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: default;
+}
+
+/* 3. Cụm bên phải: Links + Avatar (4 & 5) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Các đường dẫn chính (số 5) */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #262626;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #0095f6;
+}
+
+/* 4. Avatar cá nhân (số 4) */
+.avatar-me {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #dbdbdb;
+  cursor: pointer;
+  background-color: #fafafa;
+}
+
+/* Tùy chỉnh thêm cho nút Logout nếu cần */
+.nav-left button {
+  font-size: 13px;
+  padding: 6px 12px;
+}

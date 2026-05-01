@@ -1,0 +1,40 @@
+/* src/App.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-container {
+  display: flex;
+  flex: 1; /* Chiếm hết phần còn lại dưới Navbar */
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+/* Hiệu ứng Logo Gradient */
+.logo-text {
+  font-family:
+    "Dancing Script", cursive; /* Nhớ import font này trong index.html */
+  font-style: italic;
+  font-weight: bold;
+  font-size: 28px;
+  background: linear-gradient(
+    to right,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}

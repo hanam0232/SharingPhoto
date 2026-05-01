@@ -1,0 +1,45 @@
+.sidebar-container {
+  width: 320px;
+  border-right: 1px solid #dbdbdb;
+  background: white;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.user-block {
+  display: flex;
+  gap: 15px;
+  padding: 12px;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.user-block:hover {
+  background: #fafafa;
+  transform: translateX(5px);
+}
+
+.avatar-1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info .fullName {
+  font-weight: bold;
+  font-size: 14px;
+}
+.stat-2,
+.stat-3 {
+  font-size: 12px;
+  color: #8e8e8e;
+}

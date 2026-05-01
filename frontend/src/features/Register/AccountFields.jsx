@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
@@ -9,6 +10,7 @@ const AccountFields = ({ onNext, formData }) => {
   });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,6 +98,17 @@ const AccountFields = ({ onNext, formData }) => {
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         </div>
+
+        {/* Navigate to --> Login */}
+        <p style={{ fontSize: "14px", marginBottom: "15px" }}>
+          Đã có tài khoản?{" "}
+          <span
+            style={{ color: "#007bff", cursor: "pointer", fontWeight: "bold" }}
+            onClick={() => navigate("/login")}
+          >
+            Đăng nhập
+          </span>
+        </p>
 
         {/* Next để sang bước nhập Profile(Register) */}
         <button type="submit" className="btn-next">

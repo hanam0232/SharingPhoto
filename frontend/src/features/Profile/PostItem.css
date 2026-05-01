@@ -1,0 +1,40 @@
+.post-main-container {
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+}
+
+/* Khi mở comment, khối 6 dịch trái */
+.post-main-container.split-view {
+  gap: 20px;
+}
+
+.post-card-6 {
+  width: 500px;
+  background: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+}
+
+.photo-8 {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  background: #000;
+}
+
+.comment-panel {
+  width: 350px;
+  background: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-card {
+  padding: 10px;
+  border-bottom: 1px solid #efefef;
+  font-size: 13px;
+}
