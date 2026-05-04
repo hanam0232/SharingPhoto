@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import PostList from "../PostList/PostList";
+import { useParams, useLocation } from "react-router-dom";
+import CreatePost from "../CreatePost/CreatePost";
 import PhotoList from "../PhotoList/PhotoList";
+import PostList from "../PostList/PostList";
+import { useEffect, useState } from "react";
 import "./Css/Profile.css";
+import axios from "axios";
 
 const Profile = () => {
   const { id } = useParams();
@@ -11,13 +12,15 @@ const Profile = () => {
   const [viewMode, setViewMode] = useState("info");
   const [isZoomed, setIsZoomed] = useState(false);
 
+  const location = useLocation();
   const me = JSON.parse(localStorage.getItem("user"));
   const isMe = id === "me" || id === me?.id;
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        setViewMode("info");
+        const modeFromNav = location.state?.mode || "info";
+        setViewMode(modeFromNav);
 
         if (isMe) {
           setUserData({ ...me, birthDate: "2004-10-20T00:00:00.000Z" });
@@ -31,7 +34,7 @@ const Profile = () => {
     };
 
     fetchUserData();
-  }, [id, isMe]);
+  }, [id, isMe, location.state]);
 
   const formatDate = (dateString) => {
     if (!dateString) return "Chưa cập nhật";
@@ -60,7 +63,9 @@ const Profile = () => {
       <PhotoList userId={id} onBack={() => setViewMode("info")} isMe={isMe} />
     );
   }
-
+  if (viewMode === "createPost") {
+    return <CreatePost onBack={() => setViewMode("info")} />;
+  }
   return (
     <div className="profile-layout">
       <div className="profile-header-center">
@@ -80,6 +85,17 @@ const Profile = () => {
             Ngày sinh: {formatDate(userData.birthDate)}
           </p>
 
+          {/* Nếu là me */}
+          {isMe && (
+            <button
+              className="btn-create-post"
+              onClick={() => setViewMode("createPost")}
+            >
+              Đăng tải
+            </button>
+          )}
+
+          {/* Nếu là other */}
           {!isMe && (
             <div className="action-group">
               <button

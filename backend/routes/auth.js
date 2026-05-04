@@ -5,32 +5,41 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 
-//Luu tru anh
+// Cấu hình lưu trữ ảnh vật lý
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "uploads/"),
   filename: (req, file, cb) => cb(null, Date.now() + "_" + file.originalname),
 });
 const upload = multer({ storage });
+
 //===========================================================================================================
-//API dang ky   /api/auth/register
+// API Đăng ký: /api/auth/register
 router.post("/register", upload.single("avatar"), async (req, res) => {
-  console.log("Dữ liệu Backend nhận được:", req.body);
+  console.log("Dữ liệu Text nhận được:", req.body);
+  console.log("Dữ liệu File nhận được:", req.file); // Kiểm tra thông tin file tại đây
+
   try {
     const { username, password, fullName, birthDate } = req.body;
-    //Kiem tra user ton tai chua
+
+    // Lấy tên file đã được lưu bởi multer. Nếu không có file, để chuỗi rỗng hoặc giá trị mặc định.
+    const avatarUrl = req.file ? `uploads/${req.file.filename}` : "";
+
+    // Kiểm tra user tồn tại chưa
     const existingUser = await User.findOne({ username });
     if (existingUser)
       return res.status(400).json({ message: "Username đã tồn tại" });
-    //Ma hoa mat khau
+
+    // Mã hóa mật khẩu
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    //Tao User moi
+
+    // Tạo User mới
     const newUser = new User({
       username,
       password: hashedPassword,
       fullName,
       birthDate,
-      avatarUrl: req.file ? req.file.path : "", //Luu path new upload anh
+      avatarUrl: avatarUrl, // Lưu tên file vào database (ví dụ: 171483..._avatar.jpg)
     });
 
     await newUser.save();
@@ -43,21 +52,24 @@ router.post("/register", upload.single("avatar"), async (req, res) => {
       .json({ message: "Lỗi Server Register", error: error.message });
   }
 });
+
 //===========================================================================================================
+// API Đăng nhập: /api/auth/login
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    //Tim User
+
     const user = await User.findOne({ username });
     if (!user)
       return res.status(400).json({ message: "Tài khoản không tồn tại" });
-    //Kiem tra mat khau
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res.status(400).json({ message: "Mật khẩu không chính xác" });
-    //Tao token (1 day)
+
+    // Tạo token (nên để thời gian dài hơn 100s để test dễ hơn, ví dụ: "1d")
     const token = jwt.sign({ id: user._id }, "SECRET_KEY_CUA_BAN", {
-      expiresIn: "100s",
+      expiresIn: "1d",
     });
 
     res.json({

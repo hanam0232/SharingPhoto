@@ -15,11 +15,15 @@ const Navbar = () => {
       <div className="nav-right">
         <div className="nav-links">
           {/* prettier-ignore */}
-          <Link to="/profile/me/posts" className="nav-link">Bài đăng</Link>
-          <Link to="/profile/me/photos" className="nav-link">
+          <Link to="/profile/me/" state={{mode: "posts"}} className="nav-link">Bài đăng</Link>
+          <Link
+            to="/profile/me/"
+            state={{ mode: "photos" }}
+            className="nav-link"
+          >
             Ảnh của tôi
           </Link>
-          <Link to="/profile/me" className="nav-link">
+          <Link to="/profile/me" state={{ mode: "info" }} className="nav-link">
             Profile
           </Link>
         </div>

@@ -23,8 +23,8 @@
 }
 
 .avatar-large-circle {
-  width: 260px;
-  height: 260px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #fff;
